@@ -7,6 +7,7 @@ from PySide6.QtWidgets import (
 )
 
 from bioflow.sim.orchestrator import SimOrchestrator
+from bioflow.sim import presets
 
 
 class _SliderRow(QWidget):
@@ -94,7 +95,7 @@ class ControlsPanel(QWidget):
 
         p = self.sim.params
 
-        # Sliders (bounds are educational, not clinical)
+        # Sliders
         self.hr = _SliderRow("Heart Rate", "bpm", 40, 180, p.hr_bpm, 1)
         self.sv = _SliderRow("Stroke Volume", "mL", 20,
                              180, p.stroke_volume_ml, 1)
@@ -103,13 +104,15 @@ class ControlsPanel(QWidget):
         self.Ca = _SliderRow("Arterial Compliance", "mL/mmHg",
                              0.5, 6.0, p.arterial_compliance, 0.05)
         self.pool = _SliderRow(
-            "Venous Pooling Target", "% total", 0, 40, p.venous_pooling_target * 100.0, 1)
+            "Venous Pooling Target", "% total", 0, 40, p.venous_pooling_target * 100.0, 1
+        )
 
         for row in (self.hr, self.sv, self.R, self.Ca, self.pool):
             box_layout.addWidget(row)
 
         root.addWidget(box)
 
+        # Play / Pause / Reset
         btn_row = QHBoxLayout()
         self.btn_pause = QPushButton("Pause")
         self.btn_play = QPushButton("Play")
@@ -120,22 +123,41 @@ class ControlsPanel(QWidget):
         btn_row.addWidget(self.btn_reset)
         root.addLayout(btn_row)
 
+        # Presets
+        preset_row = QHBoxLayout()
+        self.btn_base = QPushButton("Baseline")
+        self.btn_highR = QPushButton("High R")
+        self.btn_lowC = QPushButton("Low C")
+        self.btn_weak = QPushButton("Weak Pump")
+
+        preset_row.addWidget(self.btn_base)
+        preset_row.addWidget(self.btn_highR)
+        preset_row.addWidget(self.btn_lowC)
+        preset_row.addWidget(self.btn_weak)
+        root.addLayout(preset_row)
+
         root.addStretch(1)
 
-        # Wiring
+        # Wiring (sliders)
         self.hr.slider.valueChanged.connect(self.apply)
         self.sv.slider.valueChanged.connect(self.apply)
         self.R.slider.valueChanged.connect(self.apply)
         self.Ca.slider.valueChanged.connect(self.apply)
         self.pool.slider.valueChanged.connect(self.apply)
 
+        # Wiring (buttons)
         self.btn_pause.clicked.connect(self.sim.pause)
         self.btn_play.clicked.connect(self.sim.play)
         self.btn_reset.clicked.connect(self._on_reset)
 
-    def _on_reset(self) -> None:
-        self.sim.reset(keep_params=True)
-        # sync sliders to current params
+        self.btn_base.clicked.connect(self._preset_baseline)
+        self.btn_highR.clicked.connect(self._preset_highR)
+        self.btn_lowC.clicked.connect(self._preset_lowC)
+        self.btn_weak.clicked.connect(self._preset_weak)
+
+    # ---------- helpers ----------
+
+    def _sync_sliders_from_params(self) -> None:
         p = self.sim.params
         self.hr.set_value(p.hr_bpm)
         self.sv.set_value(p.stroke_volume_ml)
@@ -143,8 +165,32 @@ class ControlsPanel(QWidget):
         self.Ca.set_value(p.arterial_compliance)
         self.pool.set_value(p.venous_pooling_target * 100.0)
 
+    # ---------- presets ----------
+
+    def _preset_baseline(self) -> None:
+        self.sim.set_params(self.sim.baseline_params())
+        self.sim.reset(keep_params=True)
+        self._sync_sliders_from_params()
+
+    def _preset_highR(self) -> None:
+        self.sim.set_params(presets.high_resistance(self.sim.params))
+        self._sync_sliders_from_params()
+
+    def _preset_lowC(self) -> None:
+        self.sim.set_params(presets.low_compliance(self.sim.params))
+        self._sync_sliders_from_params()
+
+    def _preset_weak(self) -> None:
+        self.sim.set_params(presets.weak_pump(self.sim.params))
+        self._sync_sliders_from_params()
+
+    # ---------- reset / apply ----------
+
+    def _on_reset(self) -> None:
+        self.sim.reset(keep_params=True)
+        self._sync_sliders_from_params()
+
     def apply(self) -> None:
-        # Convert pooling percent back to 0..1 fraction
         pooling_frac = self.pool.value() / 100.0
 
         self.sim.update_params(

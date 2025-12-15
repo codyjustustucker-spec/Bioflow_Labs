@@ -74,3 +74,10 @@ class SimOrchestrator:
         self.params = replace(self.params, **kwargs)
         # Recompute derived values immediately so UI reflects changes cleanly
         self.state = compute_derived(self.state, self.params)
+
+    def set_params(self, params: Params) -> None:
+        self.params = params
+        self.state = compute_derived(self.state, self.params)
+
+    def baseline_params(self) -> Params:
+        return Params()  # your canonical baseline

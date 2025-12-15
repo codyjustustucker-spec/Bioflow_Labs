@@ -68,11 +68,30 @@ class SimOrchestrator:
     # --- Convenience: update parameters safely ---
 
     def update_params(self, **kwargs) -> None:
-        """
-        Update Params fields without mutating in-place unpredictably.
-        """
+        # Clamp core stability ranges here (single source of truth)
+        if "dt" in kwargs:
+            kwargs["dt"] = max(0.001, min(0.05, float(kwargs["dt"])))
+
+        if "peripheral_resistance" in kwargs:
+            kwargs["peripheral_resistance"] = max(
+                0.05, min(20.0, float(kwargs["peripheral_resistance"])))
+
+        if "arterial_compliance" in kwargs:
+            kwargs["arterial_compliance"] = max(
+                0.1, min(20.0, float(kwargs["arterial_compliance"])))
+
+        if "venous_pooling_target" in kwargs:
+            kwargs["venous_pooling_target"] = max(
+                0.0, min(0.6, float(kwargs["venous_pooling_target"])))
+
+        if "hr_bpm" in kwargs:
+            kwargs["hr_bpm"] = max(20.0, min(250.0, float(kwargs["hr_bpm"])))
+
+        if "stroke_volume_ml" in kwargs:
+            kwargs["stroke_volume_ml"] = max(
+                0.0, min(400.0, float(kwargs["stroke_volume_ml"])))
+
         self.params = replace(self.params, **kwargs)
-        # Recompute derived values immediately so UI reflects changes cleanly
         self.state = compute_derived(self.state, self.params)
 
     def set_params(self, params: Params) -> None:

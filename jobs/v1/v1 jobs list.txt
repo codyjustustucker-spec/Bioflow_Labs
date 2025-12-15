@@ -1,0 +1,151 @@
+BioFlow Lab — v1 Jobs List (Execution Plan)
+
+Phase 0 — Project Skeleton (30–45 min)  --------------------------------------------------------------
+
+jobs_list
+
+Create repo + folder structure
+
+Add pyproject.toml
+
+Add .env.example
+
+Add .gitignore
+
+Create app.py entry point
+
+Verify app launches
+
+Phase 1 — Core Simulation Engine (60–90 min)  --------------------------------------------------------------
+
+Define state variables (pressure, flow, volume)
+
+Implement time-step loop
+
+Enforce volume conservation
+
+Add basic stability checks
+
+Unit test: no volume creation/destruction
+
+Phase 2 — Heart (Pump) Model (45–60 min)  --------------------------------------------------------------
+
+Implement periodic pump function
+
+Parameters: HR, stroke volume
+
+Generate flow waveform
+
+Clamp unphysical values
+
+Unit test: output scales correctly
+
+Phase 3 — Vessels & Resistance (60–90 min)  --------------------------------------------------------------
+
+Arterial compliance model
+
+Peripheral resistance (non-linear)
+
+Venous compliance (pooling reservoir)
+
+Pressure propagation logic
+
+Unit tests for non-linearity
+
+Phase 4 — Simulation Orchestrator (45–60 min)  --------------------------------------------------------------
+
+Combine heart + vessels + resistance
+
+Single closed-loop execution
+
+Deterministic step ordering
+
+Pause / reset hooks
+
+Smoke test full loop
+
+Phase 5 — Visualization Layer (60–90 min)  --------------------------------------------------------------
+
+Animated flow loop
+
+Pressure vs time plot
+
+Flow waveform plot
+
+Volume distribution bar
+
+Verify real-time updates
+
+Phase 6 — UI Controls (45–60 min)  --------------------------------------------------------------
+
+Sliders:
+
+Heart rate
+
+Stroke volume
+
+Resistance
+
+Compliance
+
+Venous pooling
+
+Live binding to engine
+
+Bounds + units visible
+
+Phase 7 — Pathology Presets (30 min)  --------------------------------------------------------------
+
+High resistance preset
+
+Low compliance preset
+
+Weak pump preset
+
+Reset to baseline
+
+No hard-coded “modes”
+
+Phase 8 — Stability & Edge Cases (30–45 min)  --------------------------------------------------------------
+
+Extreme parameter handling
+
+Graceful degradation
+
+Warning indicators
+
+Prevent crashes
+
+Phase 9 — Tests (45–60 min)  --------------------------------------------------------------
+
+Engine math tests
+
+Conservation tests
+
+Preset sanity tests
+
+Basic UI smoke test
+
+Phase 10 — Demo & Validation (30 min)  --------------------------------------------------------------
+
+Manual scenarios:
+
+Stenosis intuition
+
+HR overload
+
+Verify teaching moments appear
+
+Capture screenshots / GIF
+
+Phase 11 — README & Polish (45–60 min)  --------------------------------------------------------------
+
+One-paragraph overview
+
+System diagram
+
+How to run
+
+What it teaches
+
+What it does not do

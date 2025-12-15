@@ -1,0 +1,108 @@
+BioFlow Lab — v3 Blueprint (Failure & Reality)
+
+Goal:
+Teach limits, cascades, and why interventions matter.
+
+1. New core layer
+
+Perfusion → Oxygen → Risk
+
+Add a lightweight oxygen debt model:
+
+Each bed accumulates debt when perfusion < demand
+
+Debt decays when perfusion recovers
+
+Debt thresholds trigger risk states
+
+No cells. No biochemistry.
+
+2. Elevation & gravity
+
+Each bed gains:
+
+Elevation relative to heart
+
+Hydrostatic pressure offset
+
+Enables:
+
+Standing hypotension
+
+Raised legs recovery
+
+Limb ischemia under shock
+
+3. Demand modeling
+
+Each bed has:
+
+Baseline demand
+
+Stress multiplier
+
+Demand rises before failure. Important.
+
+4. Failure cascades
+
+Low perfusion → debt rises
+
+Debt → reduced compliance / resistance changes
+
+System destabilizes naturally
+
+No scripted collapse.
+
+5. New user controls
+
+Posture (continuous angle)
+
+Limb elevation sliders
+
+Stress level
+
+Blood loss severity
+
+Still bounded.
+
+6. Visual language upgrade
+
+Oxygen debt meters
+
+Risk color gradients
+
+Temporal “warning glow”
+
+Timeline scrub (replay recent seconds)
+
+7. What users learn now
+
+BP ≠ survival
+
+Timing matters
+
+Compensation hides failure
+
+Small delays kill systems
+
+This is deep intuition.
+
+8. Ethics & framing
+
+Educational only
+
+Explicit simplifications
+
+No patient advice
+
+Clear warning labels
+
+9. Success criteria
+
+Users can explain shock intuitively
+
+Collapse feels earned, not magical
+
+System teaches restraint, not panic
+
+Next: Expansion paths — turning this into a platform or product.

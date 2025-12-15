@@ -1,0 +1,19 @@
+[project]
+name = "bioflow-lab"
+version = "0.1.0"
+description = "Interactive cardiovascular dynamics simulator for intuition-driven learning"
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+    "PySide6>=6.6",
+    "numpy>=1.24",
+    "pyqtgraph>=0.13"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.setuptools]
+packages = ["bioflow"]

@@ -1,0 +1,41 @@
+bioflow-lab/
+├── README.md
+├── pyproject.toml
+├── .env.example
+├── .gitignore
+│
+├── app.py                  # App entry point
+│
+├── bioflow/
+│   ├── __init__.py
+│   │
+│   ├── sim/                # Core simulation engine
+│   │   ├── __init__.py
+│   │   ├── engine.py       # Main time-step loop
+│   │   ├── state.py        # Pressure, flow, volume dataclasses
+│   │   ├── heart.py        # Pump model
+│   │   ├── vessels.py     # Compliance + resistance
+│   │   ├── presets.py     # Pathology parameter sets
+│   │   └── units.py        # Constants + unit helpers
+│   │
+│   ├── ui/                 # GUI layer (PySide6)
+│   │   ├── __init__.py
+│   │   ├── main_window.py  # App layout
+│   │   ├── controls.py     # Sliders + presets
+│   │   ├── loop_view.py    # Circulation animation
+│   │   ├── plots.py        # Pressure / flow plots
+│   │   └── theme.py        # Colors + spacing
+│   │
+│   └── utils/
+│       ├── __init__.py
+│       └── timing.py       # Clock + dt handling
+│
+├── tests/
+│   ├── test_engine.py
+│   ├── test_conservation.py
+│   ├── test_presets.py
+│   └── test_smoke.py
+│
+└── assets/
+    ├── screenshots/
+    └── diagrams/

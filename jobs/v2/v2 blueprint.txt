@@ -1,0 +1,110 @@
+BioFlow Lab — v2 Blueprint (Physiology Depth)
+
+Goal:
+Show distribution, prioritization, and failure modes of circulation.
+
+1. System expansion
+
+Single loop → multi-bed circulation
+
+Add parallel vascular beds:
+
+Brain
+
+Heart
+
+Kidneys
+
+Peripheral / limbs
+
+All share the same pump.
+
+2. Each bed has
+
+Resistance
+
+Compliance
+
+Flow share
+
+Perfusion score
+
+Simple. Reusable.
+
+3. New dynamics
+
+Flow competition between beds
+
+Pressure redistribution
+
+Pooling amplified in periphery
+
+Reduced total perfusion under stress
+
+Emergent, not scripted.
+
+4. New state metrics
+
+Bed-specific flow
+
+Bed-specific pressure
+
+Perfusion index (0–100)
+
+Global perfusion efficiency
+
+No oxygen yet — just flow adequacy.
+
+5. User controls (additive)
+
+Bed resistance sliders
+
+Global vasoconstriction
+
+Blood volume (mild hemorrhage)
+
+Posture toggle (supine / standing)
+
+6. Visual upgrades
+
+Color-coded beds
+
+Per-bed flow bars
+
+Perfusion heat indicators
+
+Optional “focus view” per organ
+
+Still clean. Still fast.
+
+7. Teaching moments enabled
+
+Shock despite normal BP
+
+Cold hands, preserved brain flow
+
+Why organs compete
+
+Why treating numbers fails
+
+This is where intuition deepens.
+
+8. Non-goals
+
+No cellular metabolism
+
+No gas exchange
+
+No drug modeling
+
+No autonomic reflexes (yet)
+
+9. Success criteria
+
+User predicts outcomes before sliders stop
+
+Organ tradeoffs feel obvious
+
+Clinically familiar patterns emerge
+
+Next: v3 — oxygen debt, elevation, and failure cascades.

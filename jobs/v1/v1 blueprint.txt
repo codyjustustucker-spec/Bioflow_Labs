@@ -1,0 +1,115 @@
+BioFlow Lab — v1 Blueprint (MVP)
+
+Goal:
+Teach cardiovascular dynamics through immediate, honest visualization.
+Ship fast. Stable. Intuitive.
+
+1. System scope (locked)
+
+Single closed-loop circulation
+
+Compartments:
+
+Heart (pump)
+
+Arterial compliance
+
+Peripheral resistance
+
+Venous compliance (pooling reservoir)
+
+No organs. No limbs. No oxygen yet.
+
+2. State variables
+
+Pressure (arterial, venous)
+
+Flow rate
+
+Volume (arterial, venous)
+
+Heart rate
+
+Stroke volume
+
+Tracked continuously.
+
+3. Core dynamics
+
+Periodic pump function
+
+Elastic storage (arteries, veins)
+
+Resistive loss (periphery)
+
+Volume conservation enforced
+
+Non-linear resistance included.
+
+4. User controls (sliders)
+
+Heart rate
+
+Stroke volume
+
+Peripheral resistance
+
+Vessel compliance
+
+Venous pooling factor
+
+Five. Max.
+
+5. Visuals (must-have)
+
+Animated flow loop
+
+Pressure vs time plot
+
+Flow waveform
+
+Volume distribution bar (arterial vs venous)
+
+Readable in 5 seconds.
+
+6. Pathology toggles (educational)
+
+Increased resistance (stenosis proxy)
+
+Reduced compliance (stiff vessels)
+
+Weak pump (heart failure proxy)
+
+These are parameter presets, not modes.
+
+7. UI philosophy
+
+Dark, clean, scientific
+
+No clutter
+
+Units visible
+
+Warnings instead of errors
+
+8. Non-goals (important)
+
+No diagnosis
+
+No real patient data
+
+No anatomical realism
+
+No ML
+
+No web version
+
+9. Success criteria
+
+User understands non-linearity
+
+System breaks gracefully at extremes
+
+Demo impresses in under 60 seconds
+
+Next: v2 — multi-bed circulation + perfusion intuition.

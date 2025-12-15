@@ -1,16 +1,13 @@
 # app.py
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QApplication
+from bioflow.ui.main_window import MainWindow
 
 
 def main() -> int:
     app = QApplication(sys.argv)
-
-    win = QMainWindow()
-    win.setWindowTitle("BioFlow Lab")
-    win.resize(1200, 700)
+    win = MainWindow()
     win.show()
-
     return app.exec()
 
 

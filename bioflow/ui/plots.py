@@ -46,3 +46,13 @@ class PlotsPanel(QWidget):
         self.p_art_curve.setData(xs, list(self.p_art))
         self.p_ven_curve.setData(xs, list(self.p_ven))
         self.q_curve.setData(xs, list(self.q_per))
+
+    def reset(self) -> None:
+        self.t.clear()
+        self.p_art.clear()
+        self.p_ven.clear()
+        self.q_per.clear()
+
+        self.p_art_curve.clear()
+        self.p_ven_curve.clear()
+        self.q_curve.clear()

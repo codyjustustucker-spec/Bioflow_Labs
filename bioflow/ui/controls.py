@@ -77,9 +77,10 @@ class _SliderRow(QWidget):
 
 
 class ControlsPanel(QWidget):
-    def __init__(self, sim: SimOrchestrator) -> None:
+    def __init__(self, sim: SimOrchestrator, on_reset_views=None) -> None:
         super().__init__()
         self.sim = sim
+        self.on_reset_views = on_reset_views
 
         root = QVBoxLayout(self)
         root.setContentsMargins(12, 12, 12, 12)
@@ -171,24 +172,37 @@ class ControlsPanel(QWidget):
         self.sim.set_params(self.sim.baseline_params())
         self.sim.reset(keep_params=True)
         self._sync_sliders_from_params()
+        if self.on_reset_views:
+            self.on_reset_views()
 
     def _preset_highR(self) -> None:
         self.sim.set_params(presets.high_resistance(self.sim.params))
+        self.sim.reset(keep_params=True)
         self._sync_sliders_from_params()
+        if self.on_reset_views:
+            self.on_reset_views()
 
     def _preset_lowC(self) -> None:
         self.sim.set_params(presets.low_compliance(self.sim.params))
+        self.sim.reset(keep_params=True)
         self._sync_sliders_from_params()
+        if self.on_reset_views:
+            self.on_reset_views()
 
     def _preset_weak(self) -> None:
         self.sim.set_params(presets.weak_pump(self.sim.params))
+        self.sim.reset(keep_params=True)
         self._sync_sliders_from_params()
+        if self.on_reset_views:
+            self.on_reset_views()
 
     # ---------- reset / apply ----------
 
     def _on_reset(self) -> None:
         self.sim.reset(keep_params=True)
         self._sync_sliders_from_params()
+        if self.on_reset_views:
+            self.on_reset_views()
 
     def apply(self) -> None:
         pooling_frac = self.pool.value() / 100.0

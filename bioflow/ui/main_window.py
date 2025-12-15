@@ -28,7 +28,8 @@ class MainWindow(QMainWindow):
         root = QWidget()
         layout = QHBoxLayout(root)
 
-        self.controls = ControlsPanel(self.sim)
+        self.controls = ControlsPanel(
+            self.sim, on_reset_views=self.reset_views)
 
         self.status = QLabel("OK")
         self.status.setStyleSheet("padding: 6px; font-weight: 600;")
@@ -68,3 +69,6 @@ class MainWindow(QMainWindow):
         self.loop_view.update_from_state(s)
         self.plots.update_from_state(s)
         self.volbar.update_from_state(s, self.sim.params)
+
+    def reset_views(self) -> None:
+        self.plots.reset()

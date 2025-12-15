@@ -7,6 +7,7 @@ from bioflow.sim.orchestrator import SimOrchestrator
 from .loop_view import LoopView
 from .plots import PlotsPanel
 from .volume_bar import VolumeBar
+from .controls import ControlsPanel
 
 
 class MainWindow(QMainWindow):
@@ -24,9 +25,14 @@ class MainWindow(QMainWindow):
 
         root = QWidget()
         layout = QHBoxLayout(root)
+
+        self.controls = ControlsPanel(self.sim)
+
+        layout.addWidget(self.controls, 1)
         layout.addWidget(self.loop_view, 2)
         layout.addWidget(self.plots, 2)
         layout.addWidget(self.volbar, 1)
+
         self.setCentralWidget(root)
 
         self.timer = QTimer(self)

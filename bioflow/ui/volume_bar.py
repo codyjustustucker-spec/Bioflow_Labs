@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QPainter
+from PySide6.QtGui import QPainter, QColor
 from PySide6.QtWidgets import QWidget
 
 from bioflow.sim.state import State, Params
@@ -15,6 +15,11 @@ class VolumeBar(QWidget):
         self._ven = 0.0
         self._pool = 0.0
         self._total = 1.0
+
+        # colors
+        self.ARTERIAL_COLOR = QColor(200, 40, 40)
+        self.VENOUS_COLOR = QColor(50, 90, 180)
+        self.POOL_COLOR = QColor(120, 70, 140)
 
     def update_from_state(self, s: State, p: Params) -> None:
         self._art = float(s.V_art_ml)
@@ -58,22 +63,22 @@ class VolumeBar(QWidget):
         # draw from bottom up
         yy = y + bar_h
 
-        painter.setBrush(Qt.gray)   # pool
+        painter.setBrush(self.POOL_COLOR)   # pool
         yy -= seg_pool
         painter.drawRect(x, yy, bar_w, seg_pool)
 
-        painter.setBrush(Qt.white)  # veins
+        painter.setBrush(self.VENOUS_COLOR)  # veins
         yy -= seg_ven
         painter.drawRect(x, yy, bar_w, seg_ven)
 
-        painter.setBrush(Qt.lightGray)  # arteries
+        painter.setBrush(self.ARTERIAL_COLOR)  # arteries
         yy -= seg_art
         painter.drawRect(x, yy, bar_w, seg_art)
 
-        painter.setPen(Qt.white)
-        painter.drawText(10, 20, "Volume Split")
-        painter.drawText(10, 45, f"ART:  {self._art:.0f} mL")
-        painter.drawText(10, 65, f"VEN:  {self._ven:.0f} mL")
-        painter.drawText(10, 85, f"POOL: {self._pool:.0f} mL")
+        painter.setPen(Qt.black)
+        painter.drawText(25, 35, "Volume Split")
+        painter.drawText(25, 55, f"ART:  {self._art:.0f} mL")
+        painter.drawText(25, 75, f"VEN:  {self._ven:.0f} mL")
+        painter.drawText(25, 95, f"POOL: {self._pool:.0f} mL")
 
         painter.end()

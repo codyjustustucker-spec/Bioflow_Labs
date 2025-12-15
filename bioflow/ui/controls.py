@@ -170,28 +170,28 @@ class ControlsPanel(QWidget):
 
     def _preset_baseline(self) -> None:
         self.sim.set_params(self.sim.baseline_params())
-        self.sim.reset(keep_params=True)
+        self.sim.soft_reset()
         self._sync_sliders_from_params()
         if self.on_reset_views:
             self.on_reset_views()
 
     def _preset_highR(self) -> None:
-        self.sim.set_params(presets.high_resistance(self.sim.params))
-        self.sim.reset(keep_params=True)
+        self.sim.set_params(presets.high_resistance())
+        self.sim.soft_reset()
         self._sync_sliders_from_params()
         if self.on_reset_views:
             self.on_reset_views()
 
     def _preset_lowC(self) -> None:
-        self.sim.set_params(presets.low_compliance(self.sim.params))
-        self.sim.reset(keep_params=True)
+        self.sim.set_params(presets.low_compliance())
+        self.sim.soft_reset()
         self._sync_sliders_from_params()
         if self.on_reset_views:
             self.on_reset_views()
 
     def _preset_weak(self) -> None:
-        self.sim.set_params(presets.weak_pump(self.sim.params))
-        self.sim.reset(keep_params=True)
+        self.sim.set_params(presets.weak_pump())
+        self.sim.soft_reset()
         self._sync_sliders_from_params()
         if self.on_reset_views:
             self.on_reset_views()

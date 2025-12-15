@@ -44,6 +44,12 @@ class SimOrchestrator:
         self.state = self._initial
         self.paused = True
 
+    def soft_reset(self) -> None:
+        was_paused = self.paused
+        self.state = compute_derived(
+            self._default_initial(self.params), self.params)
+        self.paused = was_paused
+
     # --- Deterministic stepping ---
 
     def tick(self, n: int = 1) -> State:
